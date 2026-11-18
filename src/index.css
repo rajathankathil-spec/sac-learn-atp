@@ -177,3 +177,9 @@ input:focus-visible, textarea:focus-visible { outline: none; }
 .safe-top { padding-top: env(safe-area-inset-top); }
 .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 .safe-x { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+
+/* WhatsApp contact pill */
+.wa-btn { display: flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; min-height: 2.5rem; padding: .5rem .75rem; border-radius: 10px; font-size: .875rem; font-weight: 600; color: #15803D; background: rgba(22, 163, 74, .12); transition: background-color 150ms var(--ease), color 150ms var(--ease); }
+.dark .wa-btn { color: #4ADE80; background: rgba(74, 222, 128, .12); }
+.wa-btn:hover { background: #15803D; color: #fff; }
+.dark .wa-btn:hover { background: #16A34A; color: #fff; }

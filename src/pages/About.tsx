@@ -1,6 +1,6 @@
-import { ExternalLink, Globe, Mail, Phone, Users } from 'lucide-react'
+import { ExternalLink, Globe, Mail, Users } from 'lucide-react'
 import { InstagramIcon, YoutubeIcon, WhatsappIcon } from '../components/BrandIcons'
-import { LINKS, TEAM, telHref } from '../data/links'
+import { LINKS, TEAM, waHref } from '../data/links'
 
 const WHAT_WE_DO = [
   ['Interactive notes', 'Syllabus-based study notes for every topic, with key takeaways up front.'],
@@ -38,10 +38,12 @@ function LinkRow({ icon, name, sub, url }: { icon: React.ReactNode; name: string
 
 function Person({ name, phone, role }: { name: string; phone: string; role?: string }) {
   return (
-    <div className="rounded-xl border border-line p-4 bg-elevated">
+    <div className="group min-w-0 rounded-xl border border-line p-4 bg-elevated hover:border-accent transition-colors">
       <div className="font-medium">{name}</div>
-      {role && <div className="text-xs text-subtle mb-2">{role}</div>}
-      <a href={telHref(phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors"><Phone size={14} />{phone}</a>
+      {role && <div className="text-xs text-subtle mb-3">{role}</div>}
+      <a href={waHref(phone)} target="_blank" rel="noopener noreferrer" aria-label={`Message ${name} on WhatsApp`} className="wa-btn mt-1">
+        <WhatsappIcon width={16} height={16} />+91 {phone}
+      </a>
     </div>
   )
 }
@@ -83,11 +85,11 @@ export function About() {
           <div className="grid grid-cols-1 gap-5">
             <div>
               <div className="label mb-2">Website manager</div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3"><Person {...TEAM.manager} /></div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3"><Person {...TEAM.manager} role="Website Manager" /></div>
             </div>
             <div>
               <div className="label mb-2">Web team</div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{TEAM.web.map(m => <Person key={m.name} {...m} />)}</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{TEAM.web.map(m => <Person key={m.name} {...m} role="Web Team" />)}</div>
             </div>
           </div>
         </Card>
