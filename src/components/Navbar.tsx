@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, Presentation, Network, StickyNote, Gamepad2, Terminal, TrendingUp, Info, Sun, Moon, Menu, X } from 'lucide-react'
+import { BookOpen, Presentation, Network, StickyNote, Gamepad2, Terminal, TrendingUp, Info, ArrowLeft, Sun, Moon, Menu, X } from 'lucide-react'
 import { href } from '../lib/router'
 import { useTheme } from '../lib/theme'
+import { LINKS } from '../data/links'
 
 const NAV = [
   { to: '/', match: ['', 'module', 'topic'], label: 'Modules', icon: BookOpen },
@@ -43,6 +44,7 @@ export function Navbar({ section }: { section: string }) {
           })}
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <a href={LINKS.sacWebsite} className="btn btn-sm hidden sm:inline-flex" title="Back to the SAC website"><ArrowLeft size={15} />Back to SAC</a>
           <button onClick={toggle} className="btn btn-icon" aria-label="Toggle light/dark mode" title="Toggle theme">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span key={theme} initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.18 }} className="grid">
@@ -57,6 +59,7 @@ export function Navbar({ section }: { section: string }) {
         {open && (
           <motion.nav initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="xl:hidden overflow-hidden border-t border-line">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-3">
+              <a href={LINKS.sacWebsite} className="tab col-span-2 sm:hidden justify-center border border-line"><ArrowLeft size={16} />Back to SAC</a>
               {NAV.map(n => (
                 <a key={n.to} href={href(n.to)} onClick={() => setOpen(false)} className={`tab ${n.match.includes(section) ? 'tab-active' : ''}`}><n.icon size={16} />{n.label}</a>
               ))}
